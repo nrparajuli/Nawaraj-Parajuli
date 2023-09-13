@@ -1,0 +1,11 @@
+var Handlebars = require("../../../../../../../../node_modules/handlebars/runtime.js");
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<span\n    data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentRef || (depth0 != null ? depth0.contentRef : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentRef","hash":{},"data":data}) : helper)))
+    + "\"\n    data-ally-scoreindicator=\"custom\"\n    data-ally-show=\"instructorfeedback\"\n    data-ally-show-display=\"inline-block\"\n    data-ally-scoreindicator-target=\""
+    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+    + "\"\n    style=\"display: none;\"\n></span>\n";
+},"useData":true});

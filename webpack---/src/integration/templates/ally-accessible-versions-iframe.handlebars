@@ -1,0 +1,17 @@
+var Handlebars = require("../../../node_modules/handlebars/runtime.js");
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=container.escapeExpression, alias2=depth0 != null ? depth0 : (container.nullContext || {}), alias3=helpers.helperMissing, alias4="function";
+
+  return "<iframe id=\"ally-accessible-versions-iframe\" title=\""
+    + alias1(container.lambda(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ALTERNATIVE_FORMATS : stack1), depth0))
+    + "\" class=\"ally-iframe\" src=\""
+    + alias1(((helper = (helper = helpers.ALLY_DOMAIN || (depth0 != null ? depth0.ALLY_DOMAIN : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"ALLY_DOMAIN","hash":{},"data":data}) : helper)))
+    + "/accessibleversions?locale="
+    + alias1(((helper = (helper = helpers.locale || (depth0 != null ? depth0.locale : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"locale","hash":{},"data":data}) : helper)))
+    + "&platformName="
+    + alias1(((helper = (helper = helpers.platformName || (depth0 != null ? depth0.platformName : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"platformName","hash":{},"data":data}) : helper)))
+    + "&platformUi="
+    + alias1(((helper = (helper = helpers.platformUi || (depth0 != null ? depth0.platformUi : depth0)) != null ? helper : alias3),(typeof helper === alias4 ? helper.call(alias2,{"name":"platformUi","hash":{},"data":data}) : helper)))
+    + "\"/>\n";
+},"useData":true});

@@ -1,0 +1,21 @@
+var Handlebars = require("../../../../../node_modules/handlebars/runtime.js");
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression;
+
+  return "<div id=\"ally-af-launcher\" class=\"ally-af-launch-container ally-af-style-"
+    + alias4(((helper = (helper = helpers.style || (depth0 != null ? depth0.style : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"style","hash":{},"data":data}) : helper)))
+    + "\">\n    <button data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\" data-ally-invoke=\"alternativeformats\">\n        <img class=\"ally-af-launch-icon-white\" src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(((helper = (helper = helpers.iconWhite || (depth0 != null ? depth0.iconWhite : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"iconWhite","hash":{},"data":data}) : helper)))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n        <img class=\"ally-af-launch-icon-black\" src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(((helper = (helper = helpers.iconBlack || (depth0 != null ? depth0.iconBlack : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"iconBlack","hash":{},"data":data}) : helper)))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n        <span>"
+    + alias4(container.lambda(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.DOWNLOAD_ALTERNATIVE_FORMATS_ELLIPSIS : stack1), depth0))
+    + "</span>\n    </button>\n</div>\n";
+},"useData":true});

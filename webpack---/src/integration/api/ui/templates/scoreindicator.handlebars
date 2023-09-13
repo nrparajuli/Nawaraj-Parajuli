@@ -1,0 +1,79 @@
+var Handlebars = require("../../../../../node_modules/handlebars/runtime.js");
+function __default(obj) { return obj && (obj.__esModule ? obj["default"] : obj); }
+module.exports = (Handlebars["default"] || Handlebars).template({"compiler":[7,">= 4.0.0"],"main":function(container,depth0,helpers,partials,data) {
+    var stack1, helper, alias1=depth0 != null ? depth0 : (container.nullContext || {}), alias2=helpers.helperMissing, alias3="function", alias4=container.escapeExpression, alias5=container.lambda;
+
+  return "<span\n    data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\"\n    data-ally-show=\"instructorfeedback\"\n    data-ally-show-display=\"inline-block\"\n    data-ally-show-always-show-for-image=\""
+    + alias4(((helper = (helper = helpers.alwaysShowForImage || (depth0 != null ? depth0.alwaysShowForImage : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"alwaysShowForImage","hash":{},"data":data}) : helper)))
+    + "\"\n    class=\"ally-scoreindicator-container\"\n    style=\"display: none;\">\n\n    <button\n        data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke=\"instructorfeedback\"\n        data-ally-show=\"instructorfeedback-score-perfect\"\n        data-ally-show-display=\"inline-block\"\n        data-ally-show-always-show-for-image=\""
+    + alias4(((helper = (helper = helpers.alwaysShowForImage || (depth0 != null ? depth0.alwaysShowForImage : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"alwaysShowForImage","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke-prop-target=\""
+    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-tooltip\n        class=\"ally-scoreindicator\"\n        title=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_PERFECT : stack1), depth0))
+    + "\"\n        aria-label=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_PERFECT : stack1), depth0))
+    + "\">\n        <img src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.icons : depth0)) != null ? stack1.perfect : stack1), depth0))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n    </button>\n\n    <button\n        data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke=\"instructorfeedback\"\n        data-ally-show=\"instructorfeedback-score-high\"\n        data-ally-show-display=\"inline-block\"\n        data-ally-show-always-show-for-image=\""
+    + alias4(((helper = (helper = helpers.alwaysShowForImage || (depth0 != null ? depth0.alwaysShowForImage : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"alwaysShowForImage","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke-prop-target=\""
+    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-tooltip\n        class=\"ally-scoreindicator\"\n        title=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_HIGH : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\"\n        aria-label=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_HIGH : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\">\n        <img src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.icons : depth0)) != null ? stack1.high : stack1), depth0))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n    </button>\n\n    <button\n        data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke=\"instructorfeedback\"\n        data-ally-show=\"instructorfeedback-score-medium\"\n        data-ally-show-display=\"inline-block\"\n        data-ally-show-always-show-for-image=\""
+    + alias4(((helper = (helper = helpers.alwaysShowForImage || (depth0 != null ? depth0.alwaysShowForImage : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"alwaysShowForImage","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke-prop-target=\""
+    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-tooltip\n        class=\"ally-scoreindicator\"\n        title=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_MEDIUM : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\"\n        aria-label=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_MEDIUM : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\">\n        <img src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.icons : depth0)) != null ? stack1.medium : stack1), depth0))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n    </button>\n\n    <button\n        data-ally-content-ref=\""
+    + alias4(((helper = (helper = helpers.contentId || (depth0 != null ? depth0.contentId : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"contentId","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke=\"instructorfeedback\"\n        data-ally-show=\"instructorfeedback-score-low\"\n        data-ally-show-display=\"inline-block\"\n        data-ally-show-always-show-for-image=\""
+    + alias4(((helper = (helper = helpers.alwaysShowForImage || (depth0 != null ? depth0.alwaysShowForImage : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"alwaysShowForImage","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-invoke-prop-target=\""
+    + alias4(((helper = (helper = helpers.target || (depth0 != null ? depth0.target : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"target","hash":{},"data":data}) : helper)))
+    + "\"\n        data-ally-tooltip\n        class=\"ally-scoreindicator\"\n        title=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_LOW : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\"\n        aria-label=\""
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.ACCESSIBILITY_SCORE_LOW : stack1), depth0))
+    + "&#10;"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.i18n : depth0)) != null ? stack1.CLICK_TO_IMPROVE : stack1), depth0))
+    + "\">\n        <img src=\""
+    + alias4(((helper = (helper = helpers.baseUrl || (depth0 != null ? depth0.baseUrl : depth0)) != null ? helper : alias2),(typeof helper === alias3 ? helper.call(alias1,{"name":"baseUrl","hash":{},"data":data}) : helper)))
+    + "/"
+    + alias4(alias5(((stack1 = (depth0 != null ? depth0.icons : depth0)) != null ? stack1.low : stack1), depth0))
+    + "\" alt=\"\" aria-hidden=\"true\" />\n    </button>\n</span>\n";
+},"useData":true});
