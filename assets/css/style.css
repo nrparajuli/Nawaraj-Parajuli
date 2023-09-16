@@ -317,7 +317,7 @@ h6 {
 #hero {
   width: 100%;
   height: 100vh;
-  background: url("https://hsj.com.np/uploads/0000/386/2020/05/03/pokhara-valley-nepal-banner.jpg") top right;
+  background: url("../img/pokhara-bg.jpg") top right;
   background-size: cover;
   position: relative;
 }
