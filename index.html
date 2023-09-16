@@ -3,60 +3,93 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Outstanding Geology Professor Portfolio</title>
+    <title>Professor [Your Name]</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file for styling -->
+    <style>
+        /* Custom styles for the header with background image */
+        header {
+            background-image: url('header-background.jpg'); /* Replace with your header background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 100px 0; /* Adjust the padding as needed */
+        }
+
+        /* Style for the photo containers */
+        .photo-container {
+            text-align: center;
+            margin: 20px 0;
+        }
+
+        .photo-container img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 10px; /* Add rounded corners to the images */
+        }
+    </style>
 </head>
 <body>
     <header>
-        <h1>Dr. [Your Name]</h1>
-        <p>Geology Professor</p>
+        <h1>Professor [Your Name]</h1>
+        <p>Department of [Your Department]</p>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#research">Research</a></li>
+                <li><a href="#teaching">Teaching</a></li>
+                <li><a href="#publications">Publications</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
     </header>
     
-    <nav>
-        <a href="#about">About</a>
-        <a href="#research">Research</a>
-        <a href="#teaching">Teaching</a>
-        <a href="#publications">Publications</a>
-        <a href="#contact">Contact</a>
-    </nav>
-
     <div class="content">
-        <div class="section" id="about">
-            <img class="photo" src="about-photo.jpg" alt="About Photo">
+        <section id="about">
             <h2>About Me</h2>
-            <p>Introduce yourself and your background in geology. Highlight your achievements and contributions to the field.</p>
-        </div>
+            <div class="photo-container">
+                <img src="intro-photo.jpg" alt="Introduction Photo">
+            </div>
+            <p>Introduce yourself and provide a brief overview of your academic background, research interests, and teaching philosophy.</p>
+        </section>
         
-        <div class="section" id="research">
-            <img class="photo" src="research-photo.jpg" alt="Research Photo">
+        <section id="research">
             <h2>Research</h2>
-            <p>Showcase your research areas, ongoing projects, and notable achievements. Highlight your impact on the field of geology.</p>
-        </div>
+            <div class="photo-container">
+                <img src="research-photo.jpg" alt="Research Photo">
+            </div>
+            <p>Highlight your research areas, ongoing projects, significant contributions, and any awards or recognition.</p>
+        </section>
         
-        <div class="section" id="teaching">
-            <img class="photo" src="teaching-photo.jpg" alt="Teaching Photo">
+        <section id="teaching">
             <h2>Teaching</h2>
-            <p>Discuss your teaching philosophy, courses you've taught, and your dedication to educating the next generation of geologists.</p>
-        </div>
+            <div class="photo-container">
+                <img src="teaching-photo.jpg" alt="Teaching Photo">
+            </div>
+            <p>Discuss your teaching experience, courses you've taught, your approach to education, and any student testimonials or awards.</p>
+        </section>
         
-        <div class="section" id="publications">
-            <img class="photo" src="publications-photo.jpg" alt="Publications Photo">
+        <section id="publications">
             <h2>Publications</h2>
-            <p>List your publications, including journal articles, books, and conference papers. Highlight any awards or recognition for your work.</p>
-        </div>
+            <div class="photo-container">
+                <img src="publications-photo.jpg" alt="Publications Photo">
+            </div>
+            <p>List your publications, including journal articles, books, conference papers, and any recent publications or notable works.</p>
+        </section>
         
-        <div class="section" id="contact">
-            <img class="photo" src="contact-photo.jpg" alt="Contact Photo">
+        <section id="contact">
             <h2>Contact</h2>
-            <p>Provide contact information and ways to reach out to you for collaborations, speaking engagements, or inquiries.</p>
+            <p>Provide contact information for students, colleagues, and collaborators who want to reach out to you for inquiries or collaborations.</p>
             <div class="contact-info">
                 <p>Email: your@email.com</p>
                 <p>Phone: (123) 456-7890</p>
-                <p>Office: Room 123, Geology Building</p>
+                <p>Office: Room 123, [Your Building]</p>
             </div>
-        </div>
+        </section>
     </div>
 
-    <script src="script.js"></script> <!-- Link to your JavaScript file for navigation -->
+    <footer>
+        <p>&copy; 2023 Professor [Your Name]. All rights reserved.</p>
+    </footer>
 </body>
 </html>
