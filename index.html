@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Geology Professor Portfolio</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f7f7f7;
+        }
+
+        header {
+            background-image: url('header-background.jpg'); /* Replace with your header background image */
+            background-size: cover;
+            background-position: center;
+            color: #fff;
+            text-align: center;
+            padding: 20px;
+        }
+
+        nav {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        nav a {
+            text-decoration: none;
+            color: #333;
+            background-color: #fff;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            font-weight: bold;
+        }
+
+        nav a:hover {
+            background-color: #555;
+            color: #fff;
+        }
+
+        .content {
+            padding: 20px;
+            margin: 20px;
+        }
+
+        .section {
+            display: none;
+        }
+
+        .section.active {
+            display: block;
+        }
+
+        .section h2 {
+            font-size: 24px;
+            color: #333;
+        }
+
+        .section p {
+            font-size: 16px;
+            color: #333;
+        }
+
+        .photo {
+            max-width: 100%;
+            display: block;
+            margin: 0 auto;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Geology Professor Portfolio</h1>
+    </header>
+    
+    <nav>
+        <a href="#about">About</a>
+        <a href="#research">Research</a>
+        <a href="#teaching">Teaching</a>
+        <a href="#publications">Publications</a>
+        <a href="#contact">Contact</a>
+    </nav>
+
+    <div class="content">
+        <div class="section" id="about">
+            <img class="photo" src="about-photo.jpg" alt="About Photo">
+            <h2>About Me</h2>
+            <p>Introduce yourself and your background in geology.</p>
+        </div>
+        
+        <div class="section" id="research">
+            <img class="photo" src="research-photo.jpg" alt="Research Photo">
+            <h2>Research</h2>
+            <p>Highlight your research areas, ongoing projects, and achievements.</p>
+        </div>
+        
+        <div class="section" id="teaching">
+            <img class="photo" src="teaching-photo.jpg" alt="Teaching Photo">
+            <h2>Teaching</h2>
+            <p>Discuss your teaching philosophy, courses you've taught, and educational activities.</p>
+        </div>
+        
+        <div class="section" id="publications">
+            <img class="photo" src="publications-photo.jpg" alt="Publications Photo">
+            <h2>Publications</h2>
+            <p>List your publications, including journal articles, books, and conference papers.</p>
+        </div>
+        
+        <div class="section" id="contact">
+            <img class="photo" src="contact-photo.jpg" alt="Contact Photo">
+            <h2>Contact</h2>
+            <p>Provide contact information and ways to reach out to you.</p>
+            <div class="contact-info">
+                <p>Email: your@email.com</p>
+                <p>Phone: (123) 456-7890</p>
+                <p>Office: Room 123, Geology Building</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // JavaScript to handle navigation
+        const navLinks = document.querySelectorAll('nav a');
+        const sections = document.querySelectorAll('.section');
+
+        navLinks.forEach(link => {
+            link.addEventListener('click', (e) => {
+                e.preventDefault();
+                const targetId = e.target.getAttribute('href').substring(1);
+                sections.forEach(section => section.classList.remove('active'));
+                document.getElementById(targetId).classList.add('active');
+            });
+        });
+    </script>
+</body>
+</html>
