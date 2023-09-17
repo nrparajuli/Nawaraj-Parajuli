@@ -875,12 +875,12 @@ section {
 /*--------------------------------------------------------------
 # GEOLOGICAL FIELD WORK
 --------------------------------------------------------------*/
-.portfolio #portfolio-flters {
+.Geological Field Work #Geological Field Work-flters {
   list-style: none;
   margin-bottom: 20px;
 }
 
-.portfolio #portfolio-flters li {
+.Geological Field Work #Geological Field Work-flters li {
   cursor: pointer;
   display: inline-block;
   margin: 0 10px 10px 10px;
@@ -894,25 +894,25 @@ section {
   border: 2px solid #fff;
 }
 
-.portfolio #portfolio-flters li:hover,
-.portfolio #portfolio-flters li.filter-active {
+.Geological Field Work #Geological Field Work-flters li:hover,
+.Geological Field Work #Geological Field Work-flters li.filter-active {
   color: #f3a200;
   border-color: #ffb727;
 }
 
-.portfolio .portfolio-item {
+.Geological Field Work .Geological Field Work-item {
   margin-bottom: 30px;
 }
 
-.portfolio .portfolio-item .portfolio-img {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-img {
   overflow: hidden;
 }
 
-.portfolio .portfolio-item .portfolio-img img {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-img img {
   transition: all 0.8s ease-in-out;
 }
 
-.portfolio .portfolio-item .portfolio-info {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info {
   opacity: 0;
   position: absolute;
   left: 15px;
@@ -924,7 +924,7 @@ section {
   padding: 10px 15px;
 }
 
-.portfolio .portfolio-item .portfolio-info h4 {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info h4 {
   font-size: 18px;
   color: #fff;
   font-weight: 600;
@@ -932,14 +932,14 @@ section {
   margin-bottom: 0px;
 }
 
-.portfolio .portfolio-item .portfolio-info p {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info p {
   color: rgba(255, 255, 255, 0.8);
   font-size: 14px;
   margin-bottom: 0;
 }
 
-.portfolio .portfolio-item .portfolio-info .preview-link,
-.portfolio .portfolio-item .portfolio-info .details-link {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info .preview-link,
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info .details-link {
   position: absolute;
   right: 40px;
   font-size: 24px;
@@ -948,40 +948,40 @@ section {
   transition: 0.3s;
 }
 
-.portfolio .portfolio-item .portfolio-info .preview-link:hover,
-.portfolio .portfolio-item .portfolio-info .details-link:hover {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info .preview-link:hover,
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info .details-link:hover {
   color: #ffc041;
 }
 
-.portfolio .portfolio-item .portfolio-info .details-link {
+.Geological Field Work .Geological Field Work-item .Geological Field Work-info .details-link {
   right: 10px;
 }
 
-.portfolio .portfolio-item:hover .portfolio-img img {
+.Geological Field Work .Geological Field Work-item:hover .Geological Field Work-img img {
   transform: scale(1.2);
 }
 
-.portfolio .portfolio-item:hover .portfolio-info {
+.Geological Field Work .Geological Field Work-item:hover .Geological Field Work-info {
   opacity: 1;
 }
 
 /*--------------------------------------------------------------
-# Portfolio Details
+# Geological Field Work Details
 --------------------------------------------------------------*/
-.portfolio-details {
+.Geological Field Work-details {
   padding-top: 40px;
 }
 
-.portfolio-details .portfolio-details-slider img {
+.Geological Field Work-details .Geological Field Work-details-slider img {
   width: 100%;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination {
+.Geological Field Work-details .Geological Field Work-details-slider .swiper-pagination {
   margin-top: 20px;
   position: relative;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet {
+.Geological Field Work-details .Geological Field Work-details-slider .swiper-pagination .swiper-pagination-bullet {
   width: 12px;
   height: 12px;
   background-color: #fff;
@@ -989,16 +989,16 @@ section {
   border: 1px solid #ffb727;
 }
 
-.portfolio-details .portfolio-details-slider .swiper-pagination .swiper-pagination-bullet-active {
+.Geological Field Work-details .Geological Field Work-details-slider .swiper-pagination .swiper-pagination-bullet-active {
   background-color: #ffb727;
 }
 
-.portfolio-details .portfolio-info {
+.Geological Field Work-details .Geological Field Work-info {
   padding: 30px;
   box-shadow: 0px 0 30px rgba(59, 67, 74, 0.08);
 }
 
-.portfolio-details .portfolio-info h3 {
+.Geological Field Work-details .Geological Field Work-info h3 {
   font-size: 22px;
   font-weight: 700;
   margin-bottom: 20px;
@@ -1006,27 +1006,27 @@ section {
   border-bottom: 1px solid #eee;
 }
 
-.portfolio-details .portfolio-info ul {
+.Geological Field Work-details .Geological Field Work-info ul {
   list-style: none;
   padding: 0;
   font-size: 15px;
 }
 
-.portfolio-details .portfolio-info ul li+li {
+.Geological Field Work-details .Geological Field Work-info ul li+li {
   margin-top: 10px;
 }
 
-.portfolio-details .portfolio-description {
+.Geological Field Work-details .Geological Field Work-description {
   padding-top: 30px;
 }
 
-.portfolio-details .portfolio-description h2 {
+.Geological Field Work-details .Geological Field Work-description h2 {
   font-size: 26px;
   font-weight: 700;
   margin-bottom: 20px;
 }
 
-.portfolio-details .portfolio-description p {
+.Geological Field Work-details .Geological Field Work-description p {
   padding: 0;
 }
 
