@@ -769,8 +769,7 @@ section {
   background-position: center center;
   background-size: cover;
   position: relative;
-  text-align: center; /* Center the logo horizontally */
-}
+  }
 
 .testimonials img {
   position: absolute;
