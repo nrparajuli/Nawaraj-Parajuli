@@ -769,13 +769,6 @@ section {
   background-position: center center;
   background-size: cover;
   position: relative;
-}
-.testimonials {
-  padding: 80px 0;
-  background: url("../img/pokhara-bg.jpg") no-repeat;
-  background-position: center center;
-  background-size: cover;
-  position: relative;
   text-align: center; /* Center the logo horizontally */
 }
 
@@ -792,7 +785,7 @@ section {
 <body>
 <div class="testimonials">
 <!-- Add the Tribhuvan University logo here -->
-<img src="tribhuvan_university_logo.png" alt="Tribhuvan University Logo">
+<img src="Tribhuvan University.png" alt="Tribhuvan University Logo">
 </div>
 .testimonials::before {
   content: "";
