@@ -11,10 +11,14 @@
 
     <!-- Google Tag Manager -->
     <script>
-      (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
-          new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
-          j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
-          'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+      (function(w,d,s,l,i){
+        w[l]=w[l]||[];
+        w[l].push({'gtm.start': new Date().getTime(),event:'gtm.js'});
+        var f=d.getElementsByTagName(s)[0],
+        j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';
+        j.async=true;
+        j.src='https://www.googletagmanager.com/gtm.js?id='+i+dl;
+        f.parentNode.insertBefore(j,f);
       })(window,document,'script','dataLayer','GTM-TJJZ6PQ');
     </script>
 
@@ -24,23 +28,32 @@
 
     <meta name="csrf-param" content="authenticity_token" />
     <meta name="csrf-token" content="pZTgdqdnboz7GjyGHJv0iI1MW_stqcDqPNALKjdu22pSereUg3ctZxm1hGZbvj7nygkc6L06sQWXvlSuxkSitA" />
-
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/news" />
-    <link rel="alternate" type="application/rss+xml" title="RSS" href="/feeds/events" />
   </head>
 
   <body class="mono staff-member-pure" data-turbo="false">
-    <div data-controller="scroll-progress" style="height: 1.0em; background-color: #6366F1; position: fixed; top: 0;display:block"></div>
 
     <!-- Google Tag Manager (noscript) -->
-    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJJZ6PQ" height="0" width="0" style="display:none;visibility:hidden"></iframe></noscript>
+    <noscript>
+      <iframe src="https://www.googletagmanager.com/ns.html?id=GTM-TJJZ6PQ"
+      height="0" width="0" style="display:none;visibility:hidden"></iframe>
+    </noscript>
 
     <div class="app">
 
-      <!-- YOUR EXISTING CONTENT (UNCHANGED) -->
+      <header class="header">
+        <div class="header-navbar">
+          <div class="logo">
+            <a class="home" href="/">
+              <img alt="Tribhuvan University" src="assets/img/TU_Header.png" />
+            </a>
+          </div>
+        </div>
+      </header>
 
+      <!-- ======= Highlights Section ======= -->
       <section class="gallery-web-refresh">
         <div class="responsive-module">
+
           <header class="headings">
             <h2>Highlights</h2>
           </header>
@@ -49,45 +62,59 @@
 
             <div class="gallery-web-refresh-grid-item-3">
               <a href="/research/plymouth-pioneers/professor-nawaraj-parajuli">
-                <img src="assets/img/Highlights/Station.jpg" />
+                <figure class="gallery-image-container">
+                  <img alt="Nawaraj Parajuli" class="lazyload" data-src="assets/img/Highlights/Station.jpg" />
+                </figure>
                 <div class="gallery-web-refresh-title">
-                  Preparedness for the mountain hazard chain in Nepal
+                  <span>Preparedness for the mountain hazard chain in Nepal</span>
                 </div>
               </a>
+
+              <div class="gallery-web-refresh-description">
+                <span>Parajuli is a research associate...</span>
+              </div>
             </div>
 
             <div class="gallery-web-refresh-grid-item-3">
               <a href="/research/plymouth-pioneers/professor-iain-stewart/academic-spotlight">
-                <img src="assets/img/Highlights/Sindhupalchowk.jpg" />
+                <figure class="gallery-image-container">
+                  <img alt="Getty planet Earth" class="lazyload" data-src="assets/img/Highlights/Sindhupalchowk.jpg" />
+                </figure>
                 <div class="gallery-web-refresh-title">
-                  Unveiling hidden complexities of land
+                  <span>Unveiling hidden complexities</span>
                 </div>
               </a>
             </div>
 
             <div class="gallery-web-refresh-grid-item-3">
               <a href="/news/pr-opinion/our-final-frontier-the-land-below-ground">
-                <img src="assets/img/Highlights/Bajedi_Landslide copy.png" />
+                <figure class="gallery-image-container">
+                  <img alt="earth" class="lazyload" data-src="assets/img/Highlights/Bajedi_Landslide copy.png" />
+                </figure>
                 <div class="gallery-web-refresh-title">
-                  Local disaster resilience
+                  <span>Local disaster resilience</span>
                 </div>
               </a>
             </div>
 
             <div class="gallery-web-refresh-grid-item-3">
               <a href="/research/institutes/sustainable-earth">
-                <img src="assets/img/Highlights/AI_generated.jpg" />
+                <figure class="gallery-image-container">
+                  <img alt="Sustainable Earth Institute" class="lazyload" data-src="assets/img/Highlights/AI_generated.jpg" />
+                </figure>
                 <div class="gallery-web-refresh-title">
-                  Department of Geology: Earth Institute
+                  <span>Earth Institute</span>
                 </div>
               </a>
             </div>
 
             <div class="gallery-web-refresh-grid-item-3">
               <a href="/news/pr-opinion/our-natural-powerhouse-the-south-west-is-the-uks-hub-for-clean-green-growth">
-                <img src="assets/img/Highlights/20200702_191859.jpg" />
+                <figure class="gallery-image-container">
+                  <img alt="Getty geothermal pool" class="lazyload" data-src="assets/img/Highlights/20200702_191859.jpg" />
+                </figure>
                 <div class="gallery-web-refresh-title">
-                  Clean Energy: Hydropower
+                  <span>Clean Energy: Hydropower</span>
                 </div>
               </a>
             </div>
@@ -99,23 +126,22 @@
       <!-- Contact -->
       <section>
         <h2>Contact Nawaraj</h2>
-        <p>Department of Geology, Tribhuvan University, Nepal</p>
+        <p>Department of Geology, IoST, Tribhuvan University, Nepal.</p>
         <a href="tel:+9779841631110">+9779841631110</a><br>
         <a href="mailto:nawaraj.parajuli@prnc.tu.edu.np">Email</a>
       </section>
 
     </div>
 
-    <!-- ======= FINAL FIX (IMPORTANT) ======= -->
+    <!-- ======= FINAL FIX (ONLY ADDITION) ======= -->
     <script>
       document.addEventListener("DOMContentLoaded", function () {
         document.querySelectorAll("a").forEach(function (link) {
-          link.removeAttribute("target"); // force same tab
+          link.removeAttribute("target");
+          link.target = "_self";
         });
       });
     </script>
 
-    <!-- Existing scripts -->
-    <script src="https://d3bpgcke55gfwt.cloudfront.net/assets/application-ea081ec1d452cc05424b9de0f87b0a2c259bb896b3580e139e8a562f683dccbf.js"></script>
   </body>
 </html>
