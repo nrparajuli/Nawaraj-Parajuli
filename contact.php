@@ -1,35 +1,46 @@
 <?php
-if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    // Replace with your receiving email address
-    $to_email = 'nawaraj.parajuli@prnc.tu.edu.np';
+// Only allow POST requests
+if ($_SERVER["REQUEST_METHOD"] !== "POST") {
+    http_response_code(405);
+    echo "Method Not Allowed";
+    exit;
+}
 
-    // Get form data
-    $name = $_POST['name'];
-    $email = $_POST['email'];
-    $subject = $_POST['subject'];
-    $message = $_POST['message'];
+// Get form data safely
+$name = htmlspecialchars($_POST['name'] ?? '');
+$email = htmlspecialchars($_POST['email'] ?? '');
+$subject = htmlspecialchars($_POST['subject'] ?? 'No Subject');
+$message = htmlspecialchars($_POST['message'] ?? '');
 
-    // Check for empty fields
-    if (empty($name) || empty($email) || empty($subject) || empty($message)) {
-        echo "All fields are required.";
-    } else {
-        // Set email headers
-        $headers = "From: $name <$email>\r\n";
-        $headers .= "Reply-To: $email\r\n";
-        $headers .= "Content-Type: text/html; charset=UTF-8\r\n";
+// Validate fields
+if (empty($name) || empty($email) || empty($message)) {
+    http_response_code(400);
+    echo "Please fill all required fields.";
+    exit;
+}
 
-        // Compose email message
-        $email_message = "Name: $name<br>";
-        $email_message .= "Email: $email<br>";
-        $email_message .= "Subject: $subject<br>";
-        $email_message .= "Message:<br>$message<br>";
+// Your receiving email
+$to = "nawaraj.parajuli@prnc.tu.edu.np";
 
-        // Send email
-        if (mail($to_email, $subject, $email_message, $headers)) {
-            echo "Your message has been sent successfully!";
-        } else {
-            echo "Something went wrong. Please try again later.";
-        }
-    }
+// Email content
+$email_body = "
+Name: $name
+Email: $email
+Subject: $subject
+
+Message:
+$message
+";
+
+// Headers (IMPORTANT for delivery)
+$headers = "From: noreply@yourdomain.com\r\n";
+$headers .= "Reply-To: $email\r\n";
+
+// Send email
+if (mail($to, $subject, $email_body, $headers)) {
+    echo "OK";
+} else {
+    http_response_code(500);
+    echo "Failed to send email.";
 }
 ?>
