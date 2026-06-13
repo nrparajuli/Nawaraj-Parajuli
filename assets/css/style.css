@@ -71,19 +71,30 @@ h6 {
 --------------------------------------------------------------*/
 #header {
   z-index: 997;
-  transition: all 0.5s;
+  transition: all 0.4s ease;
   height: 80px;
-  background: rgba(25, 28, 31, 0.8);
+  background: rgba(25, 28, 31, 0.85);
+  backdrop-filter: blur(6px);
 }
 
+/* when page is scrolled */
+#header.header-scrolled {
+  height: 65px;
+  background: rgba(25, 28, 31, 0.95);
+  backdrop-filter: blur(10px);
+}
+
+/* optional transparent state */
 #header.header-transparent {
   background: transparent;
 }
 
 .navbar a {
   color: #ffffff;
+  transition: 0.3s;
 }
 
+/* keep consistency on scroll */
 #header.header-scrolled .navbar a {
   color: #ffffff;
 }
