@@ -239,6 +239,10 @@ h6 {
   z-index: 999;
 }
 
+.navbar-mobile ul {
+  display: block !important;
+}
+
 .navbar-mobile .mobile-nav-toggle {
   position: absolute;
   top: 15px;
