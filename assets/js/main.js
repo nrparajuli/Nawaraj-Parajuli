@@ -109,15 +109,26 @@
   /* =========================
      MOBILE NAV FIX (IMPORTANT)
   ========================== */
-  on("click", ".mobile-nav-toggle", function (e) {
-    e.preventDefault();
+  /**
+ * Mobile nav toggle FIX
+ */
+const mobileNavToggle = document.querySelector('.mobile-nav-toggle');
+const navbar = document.querySelector('#navbar');
 
-    const navbar = select("#navbar");
-    navbar.classList.toggle("navbar-mobile");
+if (mobileNavToggle) {
+  mobileNavToggle.addEventListener('click', function () {
+    navbar.classList.toggle('navbar-mobile');
 
-    this.classList.toggle("bi-list");
-    this.classList.toggle("bi-x");
+    // toggle icon safely
+    if (this.classList.contains('bi-list')) {
+      this.classList.remove('bi-list');
+      this.classList.add('bi-x');
+    } else {
+      this.classList.remove('bi-x');
+      this.classList.add('bi-list');
+    }
   });
+}
 
   /* =========================
      Dropdown in mobile
