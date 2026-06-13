@@ -1,46 +1,45 @@
 <?php
-// Only allow POST requests
+
+// Only allow POST
 if ($_SERVER["REQUEST_METHOD"] !== "POST") {
     http_response_code(405);
     echo "Method Not Allowed";
     exit;
 }
 
-// Get form data safely
-$name = htmlspecialchars($_POST['name'] ?? '');
-$email = htmlspecialchars($_POST['email'] ?? '');
-$subject = htmlspecialchars($_POST['subject'] ?? 'No Subject');
-$message = htmlspecialchars($_POST['message'] ?? '');
+// Get data safely
+$name = trim($_POST['name'] ?? '');
+$email = trim($_POST['email'] ?? '');
+$subject = trim($_POST['subject'] ?? 'No Subject');
+$message = trim($_POST['message'] ?? '');
 
-// Validate fields
-if (empty($name) || empty($email) || empty($message)) {
+// Validation
+if (!$name || !$email || !$message) {
     http_response_code(400);
-    echo "Please fill all required fields.";
+    echo "All fields are required.";
     exit;
 }
 
-// Your receiving email
+// Email destination
 $to = "nawaraj.parajuli@prnc.tu.edu.np";
 
 // Email content
-$email_body = "
-Name: $name
-Email: $email
-Subject: $subject
+$body = "New Contact Message\n\n";
+$body .= "Name: $name\n";
+$body .= "Email: $email\n";
+$body .= "Subject: $subject\n\n";
+$body .= "Message:\n$message\n";
 
-Message:
-$message
-";
-
-// Headers (IMPORTANT for delivery)
+// Headers
 $headers = "From: noreply@yourdomain.com\r\n";
 $headers .= "Reply-To: $email\r\n";
 
 // Send email
-if (mail($to, $subject, $email_body, $headers)) {
-    echo "OK";
+if (mail($to, $subject, $body, $headers)) {
+    echo "OK - Message Sent Successfully";
 } else {
     http_response_code(500);
-    echo "Failed to send email.";
+    echo "Failed to send message";
 }
+
 ?>
