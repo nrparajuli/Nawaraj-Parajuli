@@ -910,8 +910,7 @@ document.addEventListener("DOMContentLoaded", function () {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  
-<script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
 
 // ===============================
@@ -921,7 +920,8 @@ const workedList = new Set([
     "taplejung","panchthar","palpa","syangja","kaski","baglung",
     "myagdi","mustang","rolpa","rukum east","rukum west",
     "jajarkot","salyan","jumla","mugu","doti","achham",
-    "bajura","rupandehi","sindhupalchok","kabhrepalanchok", "dolakha","tanahu", "makawanpur","rasuwa","dhading"
+    "bajura","rupandehi","sindhupalchok","kabhrepalanchok",
+    "dolakha","tanahu","makawanpur","rasuwa","dhading"
 ]);
 
 // ===============================
@@ -934,7 +934,7 @@ const map = L.map('nepalMap', {
 });
 
 // ===============================
-// BASE MAPS (SATELLITE + STREET)
+// BASE MAPS
 // ===============================
 
 // Street map
@@ -943,13 +943,12 @@ const street = L.tileLayer(
     { attribution: '&copy; OpenStreetMap contributors' }
 );
 
-// Satellite (Esri World Imagery)
+// Satellite map (FIXED URL)
 const satellite = L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { attribution: 'Tiles © Esri' }
 );
 
-// default
 street.addTo(map);
 
 // ===============================
@@ -961,7 +960,7 @@ L.control.layers({
 }).addTo(map);
 
 // ===============================
-// NORMALIZE
+// NORMALIZE FUNCTION
 // ===============================
 function normalize(name) {
     return (name || "")
@@ -973,14 +972,14 @@ function normalize(name) {
 }
 
 // ===============================
-// GET NAME (YOUR DATA FIX)
+// GET NAME
 // ===============================
 function getName(f) {
     return f?.properties?.DIST_EN;
 }
 
 // ===============================
-// STYLE
+// STYLE FUNCTION
 // ===============================
 function style(feature) {
 
@@ -996,7 +995,7 @@ function style(feature) {
 }
 
 // ===============================
-// GEOJSON
+// LOAD GEOJSON
 // ===============================
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
 .then(res => res.json())
@@ -1054,6 +1053,39 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
         metric: true,
         imperial: false
     }).addTo(map);
+
+    // ===============================
+    // AUTO LEGEND (WORKED DISTRICTS)
+    // ===============================
+    const legend = L.control({ position: "bottomright" });
+
+    legend.onAdd = function () {
+
+        const div = L.DomUtil.create("div", "legend");
+
+        const list = Array.from(workedList).sort();
+
+        div.innerHTML = `
+            <div style="
+                background:white;
+                padding:10px 12px;
+                border:1px solid #ccc;
+                border-radius:6px;
+                font-size:13px;
+                max-height:250px;
+                overflow:auto;
+                line-height:1.4;
+            ">
+                <b style="color:#e63946;">● Worked Districts</b>
+                <hr style="margin:6px 0;">
+                ${list.map(d => `<div>• ${d}</div>`).join("")}
+            </div>
+        `;
+
+        return div;
+    };
+
+    legend.addTo(map);
 
 });
 
