@@ -944,7 +944,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // ===============================
-// STYLE FUNCTION (district level)
+// STYLE FUNCTION
 // ===============================
 function style(feature) {
 
@@ -953,22 +953,22 @@ function style(feature) {
         feature.properties.district ||
         feature.properties.name;
 
-    // Worked districts
+    // ONLY worked districts styled
     if (workedDistricts[districtName]) {
         return {
-            fillColor: "#e63946",     // RED highlight
-            color: "#b71c1c",         // darker red border
-            weight: 1.2,
-            fillOpacity: 0.7
+            fillColor: "#e63946",   // red fill
+            color: "#b71c1c",       // red boundary
+            weight: 1.5,
+            fillOpacity: 0.65
         };
     }
 
-    // Normal districts
+    // ALL other districts = no highlight (neutral)
     return {
-        fillColor: "#f2f2f2",       // light grey
-        color: "#888888",           // grey border
+        fillColor: "#ffffff",    // white background
+        color: "#cccccc",        // light grey border
         weight: 0.6,
-        fillOpacity: 0.4
+        fillOpacity: 0.05
     };
 }
 
@@ -988,31 +988,17 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
                 feature.properties.district ||
                 feature.properties.name;
 
-            // Tooltip only for worked districts
+            // tooltip ONLY for worked districts
             if (workedDistricts[districtName]) {
                 layer.bindTooltip(districtName, {
                     sticky: true
                 });
             }
         }
+
     }).addTo(map);
 
     map.fitBounds(districts.getBounds());
-
-    // ===============================
-    // NEPAL OUTER BOUNDARY (BLACK)
-    // ===============================
-    const outlineStyle = {
-        color: "#000000",
-        weight: 2,
-        fillOpacity: 0
-    };
-
-    // Re-add same GeoJSON as boundary overlay
-    L.geoJSON(data, {
-        style: outlineStyle,
-        interactive: false
-    }).addTo(map);
 
 });
 
