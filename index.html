@@ -912,11 +912,9 @@ document.addEventListener("DOMContentLoaded", function () {
   <!-- Template Main JS File -->
   
 <script>
-
 document.addEventListener("DOMContentLoaded", function () {
 
 const workedDistricts = {
-
     "Taplejung": true,
     "Panchthar": true,
     "Palpa": true,
@@ -935,47 +933,27 @@ const workedDistricts = {
     "Achham": true,
     "Bajura": true,
     "Rupandehi": true
-
 };
 
+// Initialize map
 const map = L.map('nepalMap');
 
-L.tileLayer(
-    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
-    {
-        attribution: '&copy; OpenStreetMap'
-    }
-).addTo(map);
+// Base map layer
+L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+    attribution: '&copy; OpenStreetMap contributors'
+}).addTo(map);
 
-
-function style(feature){
-
-    const districtName =
-        feature.properties.DISTRICT ||
-        feature.properties.district ||
-        feature.properties.name;
-
-    if(workedDistricts[districtName]){
-
-        return{
-            fillColor:"#d62828",   // worked districts
-            color:"#ffffff",
-            weight:1.5,
-            fillOpacity:0.75
-        };
-
-    }
-
-    return{
-        fillColor:"#d9d9d9",
-        color:"#aaaaaa",
-        weight:0.5,
-        fillOpacity:0.08
+// Uniform style for ALL districts (no highlighting)
+function style(feature) {
+    return {
+        fillColor: "#d9d9d9",
+        color: "#aaaaaa",
+        weight: 0.7,
+        fillOpacity: 0.25
     };
-
 }
 
-
+// Load GeoJSON
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
 .then(response => response.json())
 .then(data => {
@@ -984,26 +962,32 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
 
         style: style,
 
-        onEachFeature: function(feature, layer){
+        onEachFeature: function (feature, layer) {
 
             const districtName =
                 feature.properties.DISTRICT ||
                 feature.properties.district ||
                 feature.properties.name;
 
-            if(workedDistricts[districtName]){
+            // Only mark worked districts (NO color change)
+            if (workedDistricts[districtName]) {
 
-                layer.bindTooltip(
-                    districtName,
-                    {sticky:true}
-                );
+                layer.bindTooltip(districtName, {
+                    sticky: true
+                });
 
+                // Optional: click popup (clean info display)
+                layer.on('click', function () {
+                    layer.bindPopup(
+                        `<b>${districtName}</b><br>Worked Area`,
+                        { maxWidth: 200 }
+                    ).openPopup();
+                });
             }
-
         }
-
     }).addTo(map);
 
+    // Zoom to Nepal boundary
     map.fitBounds(districts.getBounds());
 
 });
