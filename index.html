@@ -918,73 +918,85 @@ document.addEventListener("DOMContentLoaded", function () {
 // WORKED DISTRICTS
 // ===============================
 const workedList = new Set([
-    "taplejung",
-    "panchthar",
-    "palpa",
-    "syangja",
-    "kaski",
-    "baglung",
-    "myagdi",
-    "mustang",
-    "rolpa",
-    "rukum east",
-    "rukum west",
-    "jajarkot",
-    "salyan",
-    "jumla",
-    "mugu",
-    "doti",
-    "achham",
-    "bajura",
-    "rupandehi"
+    "taplejung","panchthar","palpa","syangja","kaski","baglung",
+    "myagdi","mustang","rolpa","rukum east","rukum west",
+    "jajarkot","salyan","jumla","mugu","doti","achham",
+    "bajura","rupandehi"
 ]);
 
 // ===============================
 // MAP INIT
 // ===============================
-const map = L.map('nepalMap').setView([28.3, 84.1], 7);
+const map = L.map('nepalMap', {
+    center: [28.3, 84.1],
+    zoom: 7,
+    zoomControl: true
+});
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-    attribution: '&copy; OpenStreetMap contributors'
+// ===============================
+// BASE MAPS (SATELLITE + STREET)
+// ===============================
+
+// Street map
+const street = L.tileLayer(
+    'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+    { attribution: '&copy; OpenStreetMap contributors' }
+);
+
+// Satellite (Esri World Imagery)
+const satellite = L.tileLayer(
+    'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
+    { attribution: 'Tiles © Esri' }
+);
+
+// default
+street.addTo(map);
+
+// ===============================
+// LAYER CONTROL
+// ===============================
+L.control.layers({
+    "Street Map": street,
+    "Satellite": satellite
 }).addTo(map);
 
 // ===============================
-// NORMALIZE FUNCTION
+// NORMALIZE
 // ===============================
 function normalize(name) {
     return (name || "")
-        .toString()
         .toLowerCase()
+        .replace(/district/gi, "")
+        .replace(/\(.*?\)/g, "")
+        .replace(/\s+/g, " ")
         .trim();
 }
 
 // ===============================
-// GET DISTRICT NAME (FIXED!)
+// GET NAME (YOUR DATA FIX)
 // ===============================
-function getDistrictName(feature) {
-    return feature?.properties?.DIST_EN;   // 🔥 THIS IS THE KEY FIX
+function getName(f) {
+    return f?.properties?.DIST_EN;
 }
 
 // ===============================
-// STYLE FUNCTION
+// STYLE
 // ===============================
 function style(feature) {
 
-    const rawName = getDistrictName(feature);
-    const district = normalize(rawName);
-
-    const isWorked = workedList.has(district);
+    const name = normalize(getName(feature));
+    const isWorked = workedList.has(name);
 
     return {
-        fillColor: isWorked ? "#e63946" : "#f2f2f2",
-        color: isWorked ? "#b71c1c" : "#cccccc",
-        weight: isWorked ? 1.5 : 0.6,
-        fillOpacity: isWorked ? 0.7 : 0.4
+        fillColor: isWorked ? "transparent" : "#f2f2f2",
+        color: isWorked ? "#e63946" : "#cccccc",
+        weight: isWorked ? 2.5 : 0.6,
+        fillOpacity: 0.2
     };
 }
 
 // ===============================
-// LOAD GEOJSON
+// GEOJSON
 // ===============================
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
 .then(res => res.json())
@@ -996,27 +1008,53 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
 
         onEachFeature: function (feature, layer) {
 
-            const rawName = getDistrictName(feature);
-            const district = normalize(rawName);
+            const name = normalize(getName(feature));
+            const raw = getName(feature);
 
-            if (workedList.has(district)) {
+            if (workedList.has(name)) {
 
-                layer.bindTooltip(rawName, {
+                layer.bindTooltip(raw, {
                     sticky: true
                 });
 
                 layer.on("click", function () {
                     layer.bindPopup(
-                        `<b>${rawName}</b><br>Field Work Area`,
+                        `<b>${raw}</b><br>Field Work Area`,
                         { maxWidth: 200 }
                     ).openPopup();
                 });
             }
         }
-
     }).addTo(map);
 
     map.fitBounds(layer.getBounds());
+
+    // ===============================
+    // NORTH ARROW
+    // ===============================
+    const north = L.control({ position: "topright" });
+
+    north.onAdd = function () {
+        const div = L.DomUtil.create("div", "north-arrow");
+        div.innerHTML = "🧭 N";
+        div.style.fontSize = "20px";
+        div.style.fontWeight = "bold";
+        div.style.background = "white";
+        div.style.padding = "5px 8px";
+        div.style.border = "1px solid #333";
+        return div;
+    };
+
+    north.addTo(map);
+
+    // ===============================
+    // SCALE BAR
+    // ===============================
+    L.control.scale({
+        metric: true,
+        imperial: false
+    }).addTo(map);
+
 });
 
 });
