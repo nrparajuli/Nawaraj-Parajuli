@@ -911,7 +911,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
   <!-- Template Main JS File -->
  
-  <script>
+ <script>
 document.addEventListener("DOMContentLoaded", function () {
 
 // ===============================
@@ -937,14 +937,11 @@ const map = L.map('nepalMap', {
 // ===============================
 // BASE MAPS
 // ===============================
-
-// Street map
 const street = L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
     { attribution: '&copy; OpenStreetMap contributors' }
 );
 
-// Satellite map
 const satellite = L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { attribution: 'Tiles © Esri' }
@@ -978,7 +975,7 @@ function getName(f) {
 }
 
 // ===============================
-// STYLE FUNCTION (UPDATED CLEAN LOOK)
+// STYLE
 // ===============================
 function style(feature) {
 
@@ -987,18 +984,14 @@ function style(feature) {
 
     return {
         fillColor: isWorked ? "transparent" : "#f9f9f9",
-
-        // 🔥 MUCH LIGHTER + THINNER BOUNDARY
         color: isWorked ? "#d64545" : "#e6e6e6",
         weight: isWorked ? 1.8 : 0.4,
-        opacity: 1,
-
         fillOpacity: 0.15
     };
 }
 
 // ===============================
-// LOAD GEOJSON
+// GEOJSON
 // ===============================
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
 .then(res => res.json())
@@ -1015,9 +1008,7 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
 
             if (workedList.has(name)) {
 
-                layer.bindTooltip(raw, {
-                    sticky: true
-                });
+                layer.bindTooltip(raw, { sticky: true });
 
                 layer.on("click", function () {
                     layer.bindPopup(
@@ -1032,7 +1023,7 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
     map.fitBounds(layer.getBounds());
 
     // ===============================
-    // NORTH ARROW ONLY
+    // NORTH ARROW
     // ===============================
     const north = L.control({ position: "topright" });
 
@@ -1056,6 +1047,44 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
         metric: true,
         imperial: false
     }).addTo(map);
+
+    // ===============================
+    // SIMPLE LEGEND (ONLY WORKED)
+    // ===============================
+    const legend = L.control({ position: "bottomright" });
+
+    legend.onAdd = function () {
+
+        const div = L.DomUtil.create("div", "legend");
+
+        div.innerHTML = `
+            <div style="
+                background:white;
+                padding:10px 12px;
+                border:1px solid #ccc;
+                border-radius:6px;
+                font-size:13px;
+                line-height:1.4;
+            ">
+                <b>Legend</b>
+                <hr style="margin:6px 0;">
+                <div>
+                    <span style="
+                        display:inline-block;
+                        width:12px;
+                        height:12px;
+                        background:#d64545;
+                        margin-right:6px;
+                    "></span>
+                    Worked Districts
+                </div>
+            </div>
+        `;
+
+        return div;
+    };
+
+    legend.addTo(map);
 
 });
 
