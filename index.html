@@ -943,37 +943,34 @@ style="height:650px;border-radius:10px;">
 
   <!-- Template Main JS File -->
   
-
 <script>
 
 document.addEventListener("DOMContentLoaded", function () {
 
 const workedDistricts = {
 
-    "Taplejung": {type:"Structural Geology",year:"2017-2025",link:"#"},
-    "Panchthar": {type:"Structural Geology",year:"2017-2025",link:"#"},
-    "Palpa": {type:"Engineering Geology",year:"2020-2026",link:"#"},
-    "Syangja": {type:"Teaching Fieldwork",year:"2020-2026",link:"#"},
-    "Kaski": {type:"Teaching Fieldwork",year:"2020-2026",link:"#"},
-    "Baglung": {type:"Stratigraphy",year:"2024-2025",link:"#"},
-    "Myagdi": {type:"Landslide Investigation",year:"2022-2024",link:"#"},
-    "Mustang": {type:"Geotourism",year:"2024",link:"#"},
-    "Rolpa": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
-    "Rukum": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
-    "Jajarkot": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
-    "Salyan": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
-    "Jumla": {type:"Regional Geological Study",year:"2021",link:"#"},
-    "Mugu": {type:"Regional Geological Study",year:"2021",link:"#"},
-    "Doti": {type:"Geological Investigation",year:"2020",link:"#"},
-    "Achham": {type:"Geological Investigation",year:"2020",link:"#"},
-    "Bajura": {type:"Landslide EVO Project",year:"2018-2019",link:"#"},
-    "Rupandehi": {type:"Engineering Geology",year:"2020-2026",link:"#"}
+    "Taplejung": true,
+    "Panchthar": true,
+    "Palpa": true,
+    "Syangja": true,
+    "Kaski": true,
+    "Baglung": true,
+    "Myagdi": true,
+    "Mustang": true,
+    "Rolpa": true,
+    "Rukum": true,
+    "Jajarkot": true,
+    "Salyan": true,
+    "Jumla": true,
+    "Mugu": true,
+    "Doti": true,
+    "Achham": true,
+    "Bajura": true,
+    "Rupandehi": true
+
 };
 
-
-// ==================== MAP ====================
-
-const map = L.map('nepalMap').setView([28.3, 84.1], 7);
+const map = L.map('nepalMap');
 
 L.tileLayer(
     'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
@@ -982,26 +979,6 @@ L.tileLayer(
     }
 ).addTo(map);
 
-
-// ==================== DISTRICT LIST ====================
-
-const districtList = document.getElementById("districtList");
-
-Object.keys(workedDistricts)
-.sort()
-.forEach(name => {
-
-    districtList.innerHTML += `
-        <li class="list-group-item district-item"
-            data-district="${name}">
-            ${name}
-        </li>
-    `;
-
-});
-
-
-// ==================== DISTRICT STYLE ====================
 
 function style(feature){
 
@@ -1013,35 +990,29 @@ function style(feature){
     if(workedDistricts[districtName]){
 
         return{
-            fillColor:"#0d6efd",
-            weight:2,
+            fillColor:"#d62828",   // worked districts
             color:"#ffffff",
+            weight:1.5,
             fillOpacity:0.75
         };
 
     }
 
     return{
-        fillColor:"#e9ecef",
-        weight:1,
-        color:"#999999",
-        fillOpacity:0.10
+        fillColor:"#d9d9d9",
+        color:"#aaaaaa",
+        weight:0.5,
+        fillOpacity:0.08
     };
 
 }
 
-const districtLayers = {};
-
-
-// ==================== LOAD DISTRICTS ====================
 
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
-
 .then(response => response.json())
-
 .then(data => {
 
-    const geojsonLayer = L.geoJSON(data, {
+    const districts = L.geoJSON(data, {
 
         style: style,
 
@@ -1052,118 +1023,24 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
                 feature.properties.district ||
                 feature.properties.name;
 
-            districtLayers[districtName] = layer;
+            if(workedDistricts[districtName]){
 
-            layer.on({
+                layer.bindTooltip(
+                    districtName,
+                    {sticky:true}
+                );
 
-                mouseover: function(e){
-
-                    e.target.setStyle({
-                        weight:4,
-                        fillOpacity:0.9
-                    });
-
-                },
-
-                mouseout: function(e){
-
-                    geojsonLayer.resetStyle(e.target);
-
-                },
-
-                click: function(){
-
-                    if(workedDistricts[districtName]){
-
-                        const info =
-                            workedDistricts[districtName];
-
-                        layer.bindPopup(`
-                            <h5>${districtName}</h5>
-                            <hr>
-
-                            <b>Field Work</b><br>
-                            ${info.type}<br><br>
-
-                            <b>Period</b><br>
-                            ${info.year}<br><br>
-
-                            <a href="${info.link}">
-                                View Details
-                            </a>
-                        `).openPopup();
-
-                    }else{
-
-                        layer.bindPopup(`
-                            <h5>${districtName}</h5>
-                            District not included in portfolio.
-                        `).openPopup();
-
-                    }
-
-                }
-
-            });
+            }
 
         }
 
     }).addTo(map);
 
-    map.fitBounds(geojsonLayer.getBounds());
-
-});
-
-
-// ==================== LOAD NEPAL BOUNDARY ====================
-
-fetch('https://raw.githubusercontent.com/codefornepal/geojson-nepal/master/nepal.geojson')
-
-.then(response => response.json())
-
-.then(data => {
-
-    L.geoJSON(data, {
-
-        style: {
-            color: "#000000",
-            weight: 3,
-            fillOpacity: 0
-        }
-
-    }).addTo(map);
-
-});
-
-
-// ==================== CLICK LIST ITEM ====================
-
-document.addEventListener("click", function(e){
-
-    if(e.target.classList.contains("district-item")){
-
-        const district =
-            e.target.dataset.district;
-
-        const layer =
-            districtLayers[district];
-
-        if(layer){
-
-            map.fitBounds(
-                layer.getBounds()
-            );
-
-            layer.fire("click");
-
-        }
-
-    }
+    map.fitBounds(districts.getBounds());
 
 });
 
 });
-
 </script>
 
 </body>
