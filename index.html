@@ -938,18 +938,37 @@ const workedDistricts = {
 // Initialize map
 const map = L.map('nepalMap');
 
-// Base map layer
+// Base map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// Uniform style for ALL districts (no highlighting)
+// ===============================
+// STYLE FUNCTION (district level)
+// ===============================
 function style(feature) {
+
+    const districtName =
+        feature.properties.DISTRICT ||
+        feature.properties.district ||
+        feature.properties.name;
+
+    // Worked districts
+    if (workedDistricts[districtName]) {
+        return {
+            fillColor: "#e63946",     // RED highlight
+            color: "#b71c1c",         // darker red border
+            weight: 1.2,
+            fillOpacity: 0.7
+        };
+    }
+
+    // Normal districts
     return {
-        fillColor: "#d9d9d9",
-        color: "#aaaaaa",
-        weight: 0.7,
-        fillOpacity: 0.25
+        fillColor: "#f2f2f2",       // light grey
+        color: "#888888",           // grey border
+        weight: 0.6,
+        fillOpacity: 0.4
     };
 }
 
@@ -969,26 +988,31 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
                 feature.properties.district ||
                 feature.properties.name;
 
-            // Only mark worked districts (NO color change)
+            // Tooltip only for worked districts
             if (workedDistricts[districtName]) {
-
                 layer.bindTooltip(districtName, {
                     sticky: true
-                });
-
-                // Optional: click popup (clean info display)
-                layer.on('click', function () {
-                    layer.bindPopup(
-                        `<b>${districtName}</b><br>Worked Area`,
-                        { maxWidth: 200 }
-                    ).openPopup();
                 });
             }
         }
     }).addTo(map);
 
-    // Zoom to Nepal boundary
     map.fitBounds(districts.getBounds());
+
+    // ===============================
+    // NEPAL OUTER BOUNDARY (BLACK)
+    // ===============================
+    const outlineStyle = {
+        color: "#000000",
+        weight: 2,
+        fillOpacity: 0
+    };
+
+    // Re-add same GeoJSON as boundary overlay
+    L.geoJSON(data, {
+        style: outlineStyle,
+        interactive: false
+    }).addTo(map);
 
 });
 
