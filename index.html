@@ -950,7 +950,7 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // ===============================
-// CLEAN NAME FUNCTION
+// NORMALIZATION FUNCTION
 // ===============================
 function normalize(name) {
     return (name || "")
@@ -963,18 +963,17 @@ function normalize(name) {
 }
 
 // ===============================
-// AUTO-DETECT PROPERTY KEY
+// GET DISTRICT NAME (ROBUST)
 // ===============================
 function getDistrictName(feature) {
-    const props = feature.properties || {};
-
+    const p = feature.properties || {};
     return (
-        props.DISTRICT ||
-        props.district ||
-        props.name ||
-        props.NAME ||
-        props.NAME_2 ||
-        props.DIST_NAME ||
+        p.DISTRICT ||
+        p.district ||
+        p.name ||
+        p.NAME ||
+        p.NAME_2 ||
+        p.DIST_NAME ||
         "unknown"
     );
 }
@@ -991,7 +990,7 @@ function style(feature) {
 
     return {
         fillColor: isWorked ? "#e63946" : "#f2f2f2",
-        color: isWorked ? "#b71c1c" : "#888888",
+        color: isWorked ? "#b71c1c" : "#cccccc",
         weight: isWorked ? 1.5 : 0.6,
         fillOpacity: isWorked ? 0.7 : 0.35
     };
@@ -1013,12 +1012,20 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
             const rawName = getDistrictName(feature);
             const district = normalize(rawName);
 
-            // DEBUG (you can remove later)
-            console.log("GeoJSON:", rawName, "→", district);
+            const isWorked = workedList.has(district);
 
-            if (workedList.has(district)) {
-                layer.bindTooltip(rawName, { sticky: true });
+            // DEBUG (optional - remove later)
+            console.log(rawName, "→", district, "→", isWorked);
 
+            if (isWorked) {
+
+                // Hover label
+                layer.bindTooltip(rawName, {
+                    sticky: true,
+                    direction: "top"
+                });
+
+                // Click popup
                 layer.on("click", function () {
                     layer.bindPopup(
                         `<b>${rawName}</b><br>Field Work Area`,
@@ -1031,6 +1038,7 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
     }).addTo(map);
 
     map.fitBounds(layer.getBounds());
+
 })
 .catch(err => console.log("GeoJSON error:", err));
 
