@@ -915,7 +915,7 @@ document.addEventListener("DOMContentLoaded", function () {
 document.addEventListener("DOMContentLoaded", function () {
 
 // ===============================
-// YOUR WORKED DISTRICTS
+// WORKED DISTRICTS
 // ===============================
 const workedList = new Set([
     "taplejung",
@@ -950,15 +950,33 @@ L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
 }).addTo(map);
 
 // ===============================
-// NORMALIZATION FUNCTION
+// CLEAN NAME FUNCTION
 // ===============================
 function normalize(name) {
     return (name || "")
         .toString()
         .toLowerCase()
         .replace(/district/gi, "")
+        .replace(/\(.*?\)/g, "")
         .replace(/\s+/g, " ")
         .trim();
+}
+
+// ===============================
+// AUTO-DETECT PROPERTY KEY
+// ===============================
+function getDistrictName(feature) {
+    const props = feature.properties || {};
+
+    return (
+        props.DISTRICT ||
+        props.district ||
+        props.name ||
+        props.NAME ||
+        props.NAME_2 ||
+        props.DIST_NAME ||
+        "unknown"
+    );
 }
 
 // ===============================
@@ -966,11 +984,7 @@ function normalize(name) {
 // ===============================
 function style(feature) {
 
-    const rawName =
-        feature.properties.DISTRICT ||
-        feature.properties.district ||
-        feature.properties.name;
-
+    const rawName = getDistrictName(feature);
     const district = normalize(rawName);
 
     const isWorked = workedList.has(district);
@@ -979,7 +993,7 @@ function style(feature) {
         fillColor: isWorked ? "#e63946" : "#f2f2f2",
         color: isWorked ? "#b71c1c" : "#888888",
         weight: isWorked ? 1.5 : 0.6,
-        fillOpacity: isWorked ? 0.7 : 0.4
+        fillOpacity: isWorked ? 0.7 : 0.35
     };
 }
 
@@ -987,7 +1001,7 @@ function style(feature) {
 // LOAD GEOJSON
 // ===============================
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
-.then(response => response.json())
+.then(res => res.json())
 .then(data => {
 
     const layer = L.geoJSON(data, {
@@ -996,17 +1010,14 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
 
         onEachFeature: function (feature, layer) {
 
-            const rawName =
-                feature.properties.DISTRICT ||
-                feature.properties.district ||
-                feature.properties.name;
-
+            const rawName = getDistrictName(feature);
             const district = normalize(rawName);
 
+            // DEBUG (you can remove later)
+            console.log("GeoJSON:", rawName, "→", district);
+
             if (workedList.has(district)) {
-                layer.bindTooltip(rawName, {
-                    sticky: true
-                });
+                layer.bindTooltip(rawName, { sticky: true });
 
                 layer.on("click", function () {
                     layer.bindPopup(
@@ -1016,11 +1027,12 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
                 });
             }
         }
+
     }).addTo(map);
 
     map.fitBounds(layer.getBounds());
 })
-.catch(err => console.log("GeoJSON load error:", err));
+.catch(err => console.log("GeoJSON error:", err));
 
 });
 </script>
