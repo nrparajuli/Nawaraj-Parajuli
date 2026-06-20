@@ -69,12 +69,14 @@ h6 {
 /*--------------------------------------------------------------
 # Header
 --------------------------------------------------------------*/
+
+
 #header {
   z-index: 997;
   transition: all 0.4s ease;
   height: 80px;
-  background: rgba(25, 28, 31, 0.85);
-  backdrop-filter: blur(6px);
+  background: #191c1f;  /* solid dark color */
+  backdrop-filter: none; /* removes blur */
 }
 
 /* when page is scrolled */
