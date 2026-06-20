@@ -1056,10 +1056,11 @@ geojsonLayer.resetStyle(e.target);
 
 click: function(e){
 
+console.log("Clicked district:", districtName);
+
 if(workedDistricts[districtName]){
 
-const info =
-workedDistricts[districtName];
+const info = workedDistricts[districtName];
 
 layer.bindPopup(`
 <h5>${districtName}</h5>
@@ -1073,6 +1074,13 @@ ${info.year}<br><br>
 <a href="${info.link}">
 View Details
 </a>
+`).openPopup();
+
+} else {
+
+layer.bindPopup(`
+<h5>${districtName}</h5>
+District found but not matched in workedDistricts
 `).openPopup();
 
 }
