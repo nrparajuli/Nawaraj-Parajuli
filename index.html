@@ -28,6 +28,11 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/style.css" rel="stylesheet">
 
+  <link rel="stylesheet"
+href="https://unpkg.com/leaflet/dist/leaflet.css"/>
+
+<script src="https://unpkg.com/leaflet/dist/leaflet.js"></script>
+
   <!-- =======================================================
   * Template Name: Nawaraj
   * Updated: Sep 27 2023 with Bootstrap v5.3.1
@@ -35,6 +40,7 @@
   * Author: BootstrapMade.com
   * License: https://bootstrapmade.com/license/
   ======================================================== -->
+
 <head>
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
@@ -78,6 +84,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <li><a class="nav-link scrollto" href="#teaching">Teaching Experience</a></li>
         <li><a class="nav-link scrollto" href="#conference">Publication and Conference</a></li>
         <li><a class="nav-link scrollto " href="#geological-field-work">Nepal Himalaya Geological Field Work</a></li>
+        <li><a class="nav-link scrollto" href="#worked-area">Interactive Map</a></li>
          <li><a class="nav-link scrollto" href="#gallery">Gallery</a></li>
         <li class="dropdown"><a href="#"><span>Materials for Students</span> <i class="bi bi-chevron-down"></i></a>
           <ul>
@@ -655,6 +662,55 @@ document.addEventListener("DOMContentLoaded", function () {
       </div>
     </section><!-- End GEOLOGICAL FIELD WORK Section -->
 
+<!-- ======= Map Section Starts ======= -->
+
+    <section id="worked-area" class="worked-area">
+
+<div class="container-fluid">
+
+<div class="section-title">
+<span>Interactive Map</span>
+<h2>Geological Field Work Areas</h2>
+<p>
+Click highlighted districts to view details.
+</p>
+</div>
+
+<div class="row">
+
+<div class="col-lg-3">
+
+<div class="card">
+<div class="card-header">
+Worked Districts
+</div>
+
+<div class="card-body">
+
+<ul id="districtList"
+class="list-group">
+</ul>
+
+</div>
+</div>
+
+</div>
+
+<div class="col-lg-9">
+
+<div id="nepalMap"
+style="height:650px;border-radius:10px;">
+</div>
+
+</div>
+
+</div>
+
+</div>
+
+</section>
+<!-- ======= Map Section Ends ======= -->
+
 
 <!-- Gallery -->
     <!-- ======= Gallery Section ======= -->
@@ -886,8 +942,159 @@ document.addEventListener("DOMContentLoaded", function () {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
-  <script src="assets/js/main.js"></script>
+  
+
+<script src="assets/js/main.js"></script>
+
+<script>
+
+document.addEventListener("DOMContentLoaded", function () {
+
+const workedDistricts = {
+
+"Taplejung": {type:"Structural Geology",year:"2017-2025",link:"#"},
+"Panchthar": {type:"Structural Geology",year:"2017-2025",link:"#"},
+"Palpa": {type:"Engineering Geology",year:"2020-2026",link:"#"},
+"Syangja": {type:"Teaching Fieldwork",year:"2020-2026",link:"#"},
+"Kaski": {type:"Teaching Fieldwork",year:"2020-2026",link:"#"},
+"Baglung": {type:"Stratigraphy",year:"2024-2025",link:"#"},
+"Myagdi": {type:"Landslide Investigation",year:"2022-2024",link:"#"},
+"Mustang": {type:"Geotourism",year:"2024",link:"#"},
+"Rolpa": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
+"Rukum": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
+"Jajarkot": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
+"Salyan": {type:"Mineral Exploration",year:"2018-2019",link:"#"},
+"Jumla": {type:"Regional Geological Study",year:"2021",link:"#"},
+"Mugu": {type:"Regional Geological Study",year:"2021",link:"#"},
+"Doti": {type:"Geological Investigation",year:"2020",link:"#"},
+"Achham": {type:"Geological Investigation",year:"2020",link:"#"},
+"Bajura": {type:"Landslide EVO Project",year:"2018-2019",link:"#"}
+};
+
+const map = L.map('nepalMap').setView([28.3,84.1],7);
+
+L.tileLayer(
+'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
+{
+ attribution:'© OpenStreetMap'
+}
+).addTo(map);
+
+const districtList =
+document.getElementById("districtList");
+
+Object.keys(workedDistricts)
+.sort()
+.forEach(name => {
+
+districtList.innerHTML += `
+<li class="list-group-item">${name}</li>
+`;
+
+});
+
+function style(feature){
+
+const districtName =
+feature.properties.DISTRICT ||
+feature.properties.district ||
+feature.properties.name;
+
+if(workedDistricts[districtName]){
+
+return{
+fillColor:"#0d6efd",
+weight:2,
+color:"#ffffff",
+fillOpacity:0.55
+};
+
+}
+
+return{
+fillColor:"#cccccc",
+weight:1,
+color:"#ffffff",
+fillOpacity:0.15
+};
+
+}
+
+fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
+
+.then(res => res.json())
+
+.then(data => {
+
+const geojsonLayer = L.geoJSON(data, {
+
+style: style,
+
+onEachFeature: function(feature, layer){
+
+const districtName =
+feature.properties.DISTRICT ||
+feature.properties.district ||
+feature.properties.name;
+
+layer.on({
+
+mouseover: function(e){
+
+e.target.setStyle({
+weight:4,
+fillOpacity:0.8
+});
+
+},
+
+mouseout: function(e){
+
+geojsonLayer.resetStyle(e.target);
+
+},
+
+click: function(e){
+
+if(workedDistricts[districtName]){
+
+const info =
+workedDistricts[districtName];
+
+layer.bindPopup(`
+<h5>${districtName}</h5>
+
+<b>Work Type:</b><br>
+${info.type}<br><br>
+
+<b>Years:</b><br>
+${info.year}<br><br>
+
+<a href="${info.link}">
+View Details
+</a>
+`).openPopup();
+
+}
+
+}
+
+});
+
+}
+
+}).addTo(map);
+
+map.fitBounds(
+geojsonLayer.getBounds()
+);
+
+});
+
+});
+
+</script>
 
 </body>
-
 </html>
+
