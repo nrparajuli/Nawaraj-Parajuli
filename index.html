@@ -914,7 +914,10 @@ document.addEventListener("DOMContentLoaded", function () {
 <script>
 document.addEventListener("DOMContentLoaded", function () {
 
-const workedDistricts = new Set([
+// ===============================
+// YOUR WORKED DISTRICTS
+// ===============================
+const workedList = new Set([
     "taplejung",
     "panchthar",
     "palpa",
@@ -936,13 +939,19 @@ const workedDistricts = new Set([
     "rupandehi"
 ]);
 
+// ===============================
+// MAP INIT
+// ===============================
 const map = L.map('nepalMap').setView([28.3, 84.1], 7);
 
+// Base map
 L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
     attribution: '&copy; OpenStreetMap contributors'
 }).addTo(map);
 
-// 🔥 CRITICAL FIX: normalize GeoJSON names
+// ===============================
+// NORMALIZATION FUNCTION
+// ===============================
 function normalize(name) {
     return (name || "")
         .toString()
@@ -952,6 +961,9 @@ function normalize(name) {
         .trim();
 }
 
+// ===============================
+// STYLE FUNCTION
+// ===============================
 function style(feature) {
 
     const rawName =
@@ -961,21 +973,24 @@ function style(feature) {
 
     const district = normalize(rawName);
 
-    const isWorked = workedDistricts.has(district);
+    const isWorked = workedList.has(district);
 
     return {
-        fillColor: isWorked ? "#e63946" : "#ffffff",
-        color: isWorked ? "#b71c1c" : "#cccccc",
-        weight: isWorked ? 1.8 : 0.6,
-        fillOpacity: isWorked ? 0.65 : 0.05
+        fillColor: isWorked ? "#e63946" : "#f2f2f2",
+        color: isWorked ? "#b71c1c" : "#888888",
+        weight: isWorked ? 1.5 : 0.6,
+        fillOpacity: isWorked ? 0.7 : 0.4
     };
 }
 
+// ===============================
+// LOAD GEOJSON
+// ===============================
 fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-districts-new.geojson')
-.then(res => res.json())
+.then(response => response.json())
 .then(data => {
 
-    L.geoJSON(data, {
+    const layer = L.geoJSON(data, {
 
         style: style,
 
@@ -988,14 +1003,24 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
 
             const district = normalize(rawName);
 
-            if (workedDistricts.has(district)) {
-                layer.bindTooltip(rawName, { sticky: true });
+            if (workedList.has(district)) {
+                layer.bindTooltip(rawName, {
+                    sticky: true
+                });
+
+                layer.on("click", function () {
+                    layer.bindPopup(
+                        `<b>${rawName}</b><br>Field Work Area`,
+                        { maxWidth: 200 }
+                    ).openPopup();
+                });
             }
         }
-
     }).addTo(map);
 
-});
+    map.fitBounds(layer.getBounds());
+})
+.catch(err => console.log("GeoJSON load error:", err));
 
 });
 </script>
