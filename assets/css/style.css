@@ -601,10 +601,11 @@ section {
 }
 
 .about .skills-content .progress-bar {
-  width: 1px;
   height: 10px;
-  transition: 0.9s;
-  background-color: #ffc107 !important;
+  width: 0%; /* start empty */
+  background: linear-gradient(90deg, #ffc107, #ffda44);
+  box-shadow: 0 0 8px rgba(255, 193, 7, 0.6);
+  transition: width 1.5s ease;
 }
 
 /*--------------------------------------------------------------
