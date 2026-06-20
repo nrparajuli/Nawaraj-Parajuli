@@ -910,7 +910,8 @@ document.addEventListener("DOMContentLoaded", function () {
   <script src="assets/vendor/php-email-form/validate.js"></script>
 
   <!-- Template Main JS File -->
- <script>
+ 
+  <script>
 document.addEventListener("DOMContentLoaded", function () {
 
 // ===============================
@@ -943,7 +944,7 @@ const street = L.tileLayer(
     { attribution: '&copy; OpenStreetMap contributors' }
 );
 
-// Satellite map (FIXED URL)
+// Satellite map
 const satellite = L.tileLayer(
     'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}',
     { attribution: 'Tiles © Esri' }
@@ -951,16 +952,14 @@ const satellite = L.tileLayer(
 
 street.addTo(map);
 
-// ===============================
-// LAYER CONTROL
-// ===============================
+// Layer switch
 L.control.layers({
     "Street Map": street,
     "Satellite": satellite
 }).addTo(map);
 
 // ===============================
-// NORMALIZE FUNCTION
+// NORMALIZE
 // ===============================
 function normalize(name) {
     return (name || "")
@@ -979,7 +978,7 @@ function getName(f) {
 }
 
 // ===============================
-// STYLE FUNCTION
+// STYLE FUNCTION (UPDATED CLEAN LOOK)
 // ===============================
 function style(feature) {
 
@@ -987,10 +986,14 @@ function style(feature) {
     const isWorked = workedList.has(name);
 
     return {
-        fillColor: isWorked ? "transparent" : "#f2f2f2",
-        color: isWorked ? "#e63946" : "#cccccc",
-        weight: isWorked ? 2.5 : 0.6,
-        fillOpacity: 0.2
+        fillColor: isWorked ? "transparent" : "#f9f9f9",
+
+        // 🔥 MUCH LIGHTER + THINNER BOUNDARY
+        color: isWorked ? "#d64545" : "#e6e6e6",
+        weight: isWorked ? 1.8 : 0.4,
+        opacity: 1,
+
+        fillOpacity: 0.15
     };
 }
 
@@ -1029,18 +1032,18 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
     map.fitBounds(layer.getBounds());
 
     // ===============================
-    // NORTH ARROW
+    // NORTH ARROW ONLY
     // ===============================
     const north = L.control({ position: "topright" });
 
     north.onAdd = function () {
         const div = L.DomUtil.create("div", "north-arrow");
         div.innerHTML = "🧭 N";
-        div.style.fontSize = "20px";
+        div.style.fontSize = "18px";
         div.style.fontWeight = "bold";
         div.style.background = "white";
         div.style.padding = "5px 8px";
-        div.style.border = "1px solid #333";
+        div.style.border = "1px solid #ccc";
         return div;
     };
 
@@ -1053,39 +1056,6 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
         metric: true,
         imperial: false
     }).addTo(map);
-
-    // ===============================
-    // AUTO LEGEND (WORKED DISTRICTS)
-    // ===============================
-    const legend = L.control({ position: "bottomright" });
-
-    legend.onAdd = function () {
-
-        const div = L.DomUtil.create("div", "legend");
-
-        const list = Array.from(workedList).sort();
-
-        div.innerHTML = `
-            <div style="
-                background:white;
-                padding:10px 12px;
-                border:1px solid #ccc;
-                border-radius:6px;
-                font-size:13px;
-                max-height:250px;
-                overflow:auto;
-                line-height:1.4;
-            ">
-                <b style="color:#e63946;">● Worked Districts</b>
-                <hr style="margin:6px 0;">
-                ${list.map(d => `<div>• ${d}</div>`).join("")}
-            </div>
-        `;
-
-        return div;
-    };
-
-    legend.addTo(map);
 
 });
 
