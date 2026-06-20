@@ -51,6 +51,20 @@
   
 </head>
 
+
+<!-- your whole page content -->
+
+<script>
+document.addEventListener("DOMContentLoaded", function () {
+  const bars = document.querySelectorAll(".progress-bar");
+
+  bars.forEach(bar => {
+    const value = bar.getAttribute("aria-valuenow");
+    bar.style.width = value + "%";
+  });
+});
+</script>
+
 <body>
 
   <!-- ======= Header ======= -->
