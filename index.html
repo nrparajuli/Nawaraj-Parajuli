@@ -993,20 +993,50 @@ fetch('https://raw.githubusercontent.com/mesaugat/geoJSON-Nepal/master/nepal-dis
     // ===============================
     // NORTH ARROW
     // ===============================
-    const north = L.control({ position: "topright" });
+    // ===============================
+// NORTH ARROW (REAL COMPASS STYLE)
+// ===============================
+const north = L.control({ position: "topright" });
 
-    north.onAdd = function () {
-        const div = L.DomUtil.create("div", "north-arrow");
-        div.innerHTML = "🧭 N";
-        div.style.fontSize = "18px";
-        div.style.fontWeight = "bold";
-        div.style.background = "white";
-        div.style.padding = "5px 8px";
-        div.style.border = "1px solid #ccc";
-        return div;
-    };
+north.onAdd = function () {
+    const div = L.DomUtil.create("div", "north-arrow");
 
-    north.addTo(map);
+    div.innerHTML = `
+        <div style="
+            width:40px;
+            height:40px;
+            background:white;
+            border:2px solid #333;
+            border-radius:50%;
+            display:flex;
+            align-items:center;
+            justify-content:center;
+            font-size:18px;
+            font-weight:bold;
+            position:relative;
+        ">
+            <div style="
+                position:absolute;
+                top:2px;
+                font-size:10px;
+                font-weight:bold;
+            ">N</div>
+
+            <div style="
+                width:0;
+                height:0;
+                border-left:6px solid transparent;
+                border-right:6px solid transparent;
+                border-bottom:14px solid red;
+                margin-top:6px;
+            "></div>
+        </div>
+    `;
+
+    return div;
+};
+
+north.addTo(map);
 
     // ===============================
     // SCALE BAR
