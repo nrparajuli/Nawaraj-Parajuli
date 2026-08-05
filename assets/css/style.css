@@ -221,58 +221,86 @@ h6 {
   }
 }
 
-/**
-* Mobile Navigation 
-*/
-/*--------------------------------------------------------------
-# Mobile Navigation (FIXED CLEAN VERSION)
+//*--------------------------------------------------------------
+# Mobile Navigation
 --------------------------------------------------------------*/
 @media (max-width: 991px) {
 
+  /* Hamburger Icon */
   .mobile-nav-toggle {
     display: block;
-    font-size: 28px;
+    position: relative;
+    z-index: 1002;
+    font-size: 30px;
     color: #fff;
-    z-index: 1001;
     cursor: pointer;
+    line-height: 1;
   }
 
-  /* hide desktop menu */
+  /* Hide desktop menu */
   .navbar ul {
     display: none;
   }
 
-  /* when active */
+  /* Fullscreen overlay */
   .navbar.navbar-mobile {
     position: fixed;
-    inset: 0;
-    background: rgba(0,0,0,0.85);
-    z-index: 999;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.85);
+    z-index: 1000;
   }
 
+  /* Menu Box */
   .navbar.navbar-mobile ul {
     display: block !important;
     position: absolute;
-    top: 70px;
-    left: 20px;
-    right: 20px;
+    top: 80px;
+    left: 15px;
+    right: 15px;
     background: #fff;
     border-radius: 10px;
     padding: 10px 0;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
   }
 
-  .navbar.navbar-mobile ul li {
+  .navbar.navbar-mobile li {
     display: block;
+    width: 100%;
   }
 
-  .navbar.navbar-mobile ul a {
+  .navbar.navbar-mobile a,
+  .navbar.navbar-mobile a:focus {
     display: block;
     padding: 12px 20px;
     color: #333;
+    font-size: 15px;
+    font-weight: 600;
+    text-transform: none;
   }
 
-  .navbar.navbar-mobile ul a:hover {
+  .navbar.navbar-mobile a:hover,
+  .navbar.navbar-mobile .active {
     color: #ffb727;
+    background: #f8f8f8;
+  }
+
+  /* Mobile Dropdown */
+  .navbar.navbar-mobile .dropdown ul {
+    display: none !important;
+    position: static;
+    margin: 0;
+    padding-left: 15px;
+    background: #f8f8f8;
+    box-shadow: none;
+    border-radius: 0;
+  }
+
+  .navbar.navbar-mobile .dropdown.dropdown-active > ul {
+    display: block !important;
   }
 }
 
