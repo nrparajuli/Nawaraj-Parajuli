@@ -1,23 +1,23 @@
+console.log("MAIN JS IS LOADED");
+
 document.addEventListener("DOMContentLoaded", function () {
 
-  const navbar = document.querySelector("#navbar");
+  console.log("DOM READY");
+
+  const navbar = document.getElementById("navbar");
   const toggle = document.querySelector(".mobile-nav-toggle");
 
-  if (!navbar || !toggle) return;
+  console.log(navbar);
+  console.log(toggle);
 
   toggle.addEventListener("click", function () {
+
+    console.log("CLICKED");
+
     navbar.classList.toggle("navbar-mobile");
 
-    this.classList.toggle("bi-list");
-    this.classList.toggle("bi-x");
-  });
+    console.log(navbar.className);
 
-  document.querySelectorAll("#navbar a").forEach(link => {
-    link.addEventListener("click", () => {
-      navbar.classList.remove("navbar-mobile");
-      toggle.classList.add("bi-list");
-      toggle.classList.remove("bi-x");
-    });
   });
 
 });
