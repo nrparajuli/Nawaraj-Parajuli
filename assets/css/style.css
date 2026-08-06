@@ -14,12 +14,9 @@ my css, /**
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
-  background-color: #73cd33;
+  
 }
 
-section {
-  background: transparent;
-}
 
 a {
   color: #ffb727;
