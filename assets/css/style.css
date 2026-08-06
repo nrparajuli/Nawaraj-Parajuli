@@ -222,60 +222,134 @@ h6 {
 }
 
 /**
-* Mobile Navigation 
+* Mobile Navigation
 */
 /*--------------------------------------------------------------
-# Mobile Navigation (FIXED CLEAN VERSION)
+# Mobile Navigation (Improved - No HTML/JS Changes Required)
 --------------------------------------------------------------*/
 @media (max-width: 991px) {
 
+  /* Hamburger icon */
   .mobile-nav-toggle {
     display: block;
-    font-size: 28px;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-size: 30px;
     color: #fff;
-    z-index: 1001;
     cursor: pointer;
+    z-index: 1002;
+    transition: all .3s ease;
   }
 
-  /* hide desktop menu */
+  .mobile-nav-toggle:hover {
+    color: #ffb727;
+  }
+
+  /* Hide desktop menu */
   .navbar ul {
     display: none;
   }
 
-  /* when active */
+  /* Mobile menu overlay */
   .navbar.navbar-mobile {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.85);
+    background: rgba(0, 0, 0, 0.65);
     z-index: 999;
+    transition: all .3s ease;
   }
 
+  /* Slide-down menu */
   .navbar.navbar-mobile ul {
     display: block !important;
     position: absolute;
-    top: 70px;
-    left: 20px;
-    right: 20px;
-    background: #fff;
-    border-radius: 10px;
+    top: 75px;
+    left: 15px;
+    right: 15px;
+    bottom: 20px;
+    overflow-y: auto;
+
+    margin: 0;
     padding: 10px 0;
+
+    background: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 10px 35px rgba(0,0,0,.25);
+
+    animation: mobileMenu .25s ease;
   }
 
   .navbar.navbar-mobile ul li {
     display: block;
+    width: 100%;
   }
 
-  .navbar.navbar-mobile ul a {
+  .navbar.navbar-mobile ul a,
+  .navbar.navbar-mobile ul a:focus {
     display: block;
-    padding: 12px 20px;
+    padding: 14px 24px;
+    font-size: 15px;
+    font-weight: 600;
     color: #333;
+    text-transform: uppercase;
+    letter-spacing: .5px;
+    border-bottom: 1px solid #f1f1f1;
+    transition: .25s;
   }
 
-  .navbar.navbar-mobile ul a:hover {
-    color: #ffb727;
+  .navbar.navbar-mobile ul li:last-child a {
+    border-bottom: none;
   }
+
+  .navbar.navbar-mobile ul a:hover,
+  .navbar.navbar-mobile ul .active,
+  .navbar.navbar-mobile ul li:hover > a {
+    color: #ffb727;
+    background: rgba(255,183,39,.08);
+    padding-left: 30px;
+  }
+
+  /* Dropdowns */
+  .navbar.navbar-mobile .dropdown ul {
+    position: static;
+    display: none;
+    margin: 5px 15px;
+    padding: 5px 0;
+    background: #f8f8f8;
+    border-radius: 8px;
+    box-shadow: none;
+    visibility: visible;
+    opacity: 1;
+  }
+
+  .navbar.navbar-mobile .dropdown > .dropdown-active {
+    display: block;
+  }
+
+  .navbar.navbar-mobile .dropdown ul a {
+    font-size: 14px;
+    padding: 12px 20px;
+    text-transform: none;
+  }
+
+  .navbar.navbar-mobile .dropdown ul a:hover {
+    background: rgba(255,183,39,.08);
+  }
+
 }
 
+/* Opening animation */
+@keyframes mobileMenu {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
 /*--------------------------------------------------------------
 # Hero Section
 --------------------------------------------------------------*/
