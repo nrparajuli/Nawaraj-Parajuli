@@ -1,4 +1,4 @@
-/**
+my css, /**
 * Template Name: Nawaraj
 * Updated: Jul 27 2023 with Bootstrap v5.3.1
 * Template URL: https://bootstrapmade.com/Nawaraj-free-creative-bootstrap-theme/
@@ -1333,22 +1333,4 @@ section {
 
 #footer .credits {
   font-size: 13px;
-}
-
-@media (max-width:991px){
-
-.navbar-mobile .dropdown ul{
-    display:none;
-    position:static;
-    opacity:1;
-    visibility:visible;
-    box-shadow:none;
-    margin:0;
-    padding-left:15px;
-}
-
-.navbar-mobile .dropdown>.dropdown-active{
-    display:block;
-}
-
 }
