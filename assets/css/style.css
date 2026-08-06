@@ -14,7 +14,11 @@ my css, /**
 body {
   font-family: "Open Sans", sans-serif;
   color: #444444;
-  background-color: #7299c1;   /* Light blue-gray */
+  background-color: #eef3f8;
+}
+
+section {
+  background: transparent;
 }
 
 a {
