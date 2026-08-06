@@ -221,134 +221,90 @@ h6 {
   }
 }
 
-/**
-* Mobile Navigation
-*/
 /*--------------------------------------------------------------
-# Mobile Navigation (Improved - No HTML/JS Changes Required)
+# Mobile Navigation - Modern Scroll Tabs
 --------------------------------------------------------------*/
 @media (max-width: 991px) {
 
-  /* Hamburger icon */
-  .mobile-nav-toggle {
-    display: block;
-    position: fixed;
-    top: 20px;
-    right: 20px;
-    font-size: 30px;
-    color: #fff;
-    cursor: pointer;
-    z-index: 1002;
-    transition: all .3s ease;
+  /* Hide hamburger */
+  .mobile-nav-toggle{
+    display:none !important;
   }
 
-  .mobile-nav-toggle:hover {
-    color: #ffb727;
+  /* Header */
+  #header{
+    height:60px;
+    background:rgba(0,0,0,.85);
+    backdrop-filter:blur(8px);
+    display:flex;
+    align-items:center;
+    justify-content:flex-start;
+    overflow:hidden;
+    z-index:9999;
   }
 
-  /* Hide desktop menu */
-  .navbar ul {
-    display: none;
+  /* Navigation container */
+  .navbar{
+    width:100%;
+    overflow-x:auto;
+    overflow-y:hidden;
+    white-space:nowrap;
+    -webkit-overflow-scrolling:touch;
+    scrollbar-width:none;
   }
 
-  /* Mobile menu overlay */
-  .navbar.navbar-mobile {
-    position: fixed;
-    inset: 0;
-    background: rgba(0, 0, 0, 0.65);
-    z-index: 999;
-    transition: all .3s ease;
+  .navbar::-webkit-scrollbar{
+    display:none;
   }
 
-  /* Slide-down menu */
-  .navbar.navbar-mobile ul {
-    display: block !important;
-    position: absolute;
-    top: 75px;
-    left: 15px;
-    right: 15px;
-    bottom: 20px;
-    overflow-y: auto;
+  /* Menu */
+  .navbar > ul{
+    display:flex !important;
+    flex-wrap:nowrap;
+    align-items:center;
+    gap:8px;
 
-    margin: 0;
-    padding: 10px 0;
-
-    background: #ffffff;
-    border-radius: 12px;
-    box-shadow: 0 10px 35px rgba(0,0,0,.25);
-
-    animation: mobileMenu .25s ease;
+    margin:0;
+    padding:0 12px;
+    list-style:none;
+    width:max-content;
   }
 
-  .navbar.navbar-mobile ul li {
-    display: block;
-    width: 100%;
+  .navbar > ul > li{
+    flex:0 0 auto;
   }
 
-  .navbar.navbar-mobile ul a,
-  .navbar.navbar-mobile ul a:focus {
-    display: block;
-    padding: 14px 24px;
-    font-size: 15px;
-    font-weight: 600;
-    color: #333;
-    text-transform: uppercase;
-    letter-spacing: .5px;
-    border-bottom: 1px solid #f1f1f1;
-    transition: .25s;
+  .navbar > ul > li > a{
+    display:block;
+    padding:8px 16px;
+    border-radius:50px;
+
+    color:#fff;
+    background:rgba(255,255,255,.08);
+
+    font-size:13px;
+    font-weight:600;
+
+    transition:.3s;
+    white-space:nowrap;
   }
 
-  .navbar.navbar-mobile ul li:last-child a {
-    border-bottom: none;
+  .navbar > ul > li > a:hover,
+  .navbar > ul > li > a.active{
+    background:#f3b400;
+    color:#111;
   }
 
-  .navbar.navbar-mobile ul a:hover,
-  .navbar.navbar-mobile ul .active,
-  .navbar.navbar-mobile ul li:hover > a {
-    color: #ffb727;
-    background: rgba(255,183,39,.08);
-    padding-left: 30px;
+  /* Hide dropdowns on mobile */
+  .navbar .dropdown > ul{
+    display:none !important;
   }
 
-  /* Dropdowns */
-  .navbar.navbar-mobile .dropdown ul {
-    position: static;
-    display: none;
-    margin: 5px 15px;
-    padding: 5px 0;
-    background: #f8f8f8;
-    border-radius: 8px;
-    box-shadow: none;
-    visibility: visible;
-    opacity: 1;
+  .navbar .dropdown > a::after{
+    content:" ▼";
+    font-size:10px;
   }
 
-  .navbar.navbar-mobile .dropdown > .dropdown-active {
-    display: block;
-  }
-
-  .navbar.navbar-mobile .dropdown ul a {
-    font-size: 14px;
-    padding: 12px 20px;
-    text-transform: none;
-  }
-
-  .navbar.navbar-mobile .dropdown ul a:hover {
-    background: rgba(255,183,39,.08);
-  }
-
-}
-
-/* Opening animation */
-@keyframes mobileMenu {
-  from {
-    opacity: 0;
-    transform: translateY(-15px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
 }
 /*--------------------------------------------------------------
 # Hero Section
