@@ -332,7 +332,33 @@ h6 {
     z-index: 9997;
   }
 
-  
+  .navbar-mobile {
+    position: fixed;
+    inset: 0;
+    background: rgba(0,0,0,.6);
+    z-index: 9997;
+}
+
+
+} /* END OF MOBILE MEDIA QUERY */
+
+/*--------------------------------------------------------------
+# Hero
+--------------------------------------------------------------*/
+#hero {
+  width: 100%;
+  height: 100vh;
+  background: url("../img/pkr_tu.jpg") center center no-repeat;
+  background-size: cover;
+  position: relative;
+}
+#hero {
+    width: 100%;
+    height: 100vh;
+    background: url("../img/pkr_tu.jpg") center center no-repeat;
+    background-size: cover;
+    position: relative;
+}
 --------------------------------------------------------------*/
 #hero {
   width: 100%;
