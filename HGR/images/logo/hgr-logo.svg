@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 500 130">
+<rect width="500" height="130" fill="none"/>
+<g fill="none" stroke="#18b7d5" stroke-width="6" stroke-linejoin="round">
+<path d="M25 100 L85 25 L125 72 L165 15 L225 100"/>
+<path d="M52 100 L92 58 L122 88 L160 50 L195 100"/>
+</g>
+<text x="245" y="55" font-family="Arial, sans-serif" font-size="29" font-weight="700" fill="#ffffff">HIMALAYAN</text>
+<text x="245" y="88" font-family="Arial, sans-serif" font-size="24" fill="#18b7d5">GEOLOGICAL RESEARCH</text>
+</svg>
