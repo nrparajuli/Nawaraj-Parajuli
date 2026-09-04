@@ -1,0 +1,11 @@
+HGR DEVELOPMENT LOG
+====================
+
+2026-09-04  — HGR folder architecture created
+2026-09-04  — Main HGR homepage created
+2026-09-04  — Publications, Articles, Research, Field Studies, Maps, Data and About pages created
+2026-09-04  — Rasuwa 2026 event folder created
+2026-09-04  — Event-specific photos/maps/data folders created
+2026-09-04  — Responsive CSS and navigation JavaScript added
+2026-09-04  — Starter JPEG visual assets added
+2026-09-04  — Ready for upload and replacement with real research images/maps
